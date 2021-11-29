@@ -1,0 +1,1008 @@
+-- https://aquerytool.com/ 공간 팀프로젝트 DB
+CREATE TABLE Construction_Company
+(
+    CC_id              INT              NOT NULL,
+    CC_Cname           VARCHAR2(50)     NOT NULL,
+    CC_nember          VARCHAR2(50)     NOT NULL,
+    CC_home            VARCHAR2(50)     NULL,
+    CC_pname           VARCHAR2(20)     NOT NULL,
+    CC_tel             VARCHAR2(50)     NOT NULL,
+    CC_mail            VARCHAR2(50)     NOT NULL,
+    CC_categories      VARCHAR2(100)    NOT NULL,
+    CC_main            VARCHAR2(500)    NOT NULL,
+    CC_introduction    VARCHAR2(300)    NULL,
+    CC_address1        VARCHAR2(20)     NULL,
+    CC_address2        VARCHAR2(80)     NULL,
+    CC_address3        VARCHAR2(80)     NULL,
+    user_id            INT              NOT NULL,
+    CONSTRAINT PK_Construction_Company PRIMARY KEY (CC_id, CC_Cname)
+)
+/
+
+CREATE SEQUENCE Construction_Company_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER Construction_Company_AI_TRG
+BEFORE INSERT ON Construction_Company
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT Construction_Company_SEQ.NEXTVAL
+    INTO :NEW.CC_id
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER Construction_Company_AI_TRG;
+/
+
+--DROP SEQUENCE Construction_Company_SEQ;
+/
+
+COMMENT ON TABLE Construction_Company IS '시공업체'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_id IS '업체번호'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_Cname IS '회사이름'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_nember IS '사업자번호'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_home IS '업페홈페이지'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_pname IS '업체담당자'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_tel IS '업체전화번호'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_mail IS '업체메일'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_categories IS '업체카테고리'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_main IS '메인사진'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_introduction IS '업체소게글'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_address1 IS '업체주소1(우편)'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_address2 IS '업체주소2(주소)'
+/
+
+COMMENT ON COLUMN Construction_Company.CC_address3 IS '업체주소3(상세)'
+/
+
+COMMENT ON COLUMN Construction_Company.user_id IS '고객번호(고유)'
+/
+-------------------------------------------------------------------------------
+CREATE TABLE Construction_Details
+(
+    CC_id              INT              NOT NULL,
+    CC_introduction    VARCHAR2(500)    NOT NULL,
+    CC_star            INT              DEFAULT 0 NOT NULL,
+    CC_service         VARCHAR2(500)    NOT NULL,
+    CC_reviewNum       INT              DEFAULT 0 NOT NULL
+)
+/
+
+COMMENT ON TABLE Construction_Details IS '시공업체 상세'
+/
+
+COMMENT ON COLUMN Construction_Details.CC_id IS '업체번호'
+/
+
+COMMENT ON COLUMN Construction_Details.CC_introduction IS '회사소개글'
+/
+
+COMMENT ON COLUMN Construction_Details.CC_star IS '별점'
+/
+
+COMMENT ON COLUMN Construction_Details.CC_service IS '주력서비스'
+/
+
+COMMENT ON COLUMN Construction_Details.CC_reviewNum IS '리뷰수'
+/
+
+ALTER TABLE Construction_Details
+    ADD CONSTRAINT FK_Construction_Details_CC_id_ FOREIGN KEY (CC_id)
+        REFERENCES Construction_Company (CC_id)
+/
+
+-------------------------------------------------------------------------------
+CREATE TABLE Review_Details
+(
+    CC_id             INT               NOT NULL,
+    user_nickname     VARCHAR2(20)      NOT NULL,
+    Review_star       VARCHAR2(20)      NOT NULL,
+    Review_title      VARCHAR2(20)      NOT NULL,
+    Review_content    VARCHAR2(2000)    NOT NULL,
+    Review_img1       VARCHAR2(500)     NULL,
+    Review_img2       VARCHAR2(500)     NULL,
+    Review_img3       VARCHAR2(500)     NULL,
+    Review_img4       VARCHAR2(500)     NULL,
+    Review_img5       VARCHAR2(500)     NULL
+)
+/
+
+COMMENT ON TABLE Review_Details IS '리뷰'
+/
+
+COMMENT ON COLUMN Review_Details.CC_id IS '업체번호'
+/
+
+COMMENT ON COLUMN Review_Details.user_nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN Review_Details.Review_star IS '별점'
+/
+
+COMMENT ON COLUMN Review_Details.Review_title IS '리뷰제목'
+/
+
+COMMENT ON COLUMN Review_Details.Review_content IS '리뷰글'
+/
+
+COMMENT ON COLUMN Review_Details.Review_img1 IS '리뷰이미지1'
+/
+
+COMMENT ON COLUMN Review_Details.Review_img2 IS '리뷰이미지2'
+/
+
+COMMENT ON COLUMN Review_Details.Review_img3 IS '리뷰이미지3'
+/
+
+COMMENT ON COLUMN Review_Details.Review_img4 IS '리뷰이미지4'
+/
+
+COMMENT ON COLUMN Review_Details.Review_img5 IS '리뷰이미지5'
+/
+
+ALTER TABLE Review_Details
+    ADD CONSTRAINT FK_Review_Details_CC_id_Constr FOREIGN KEY (CC_id)
+        REFERENCES Construction_Company (CC_id)
+/
+
+ALTER TABLE Review_Details
+    ADD CONSTRAINT FK_Review_Details_user_nicknam FOREIGN KEY (user_nickname)
+        REFERENCES user_info (user_nickname)
+/
+
+-------------------------------------------------------------------------------
+
+CREATE TABLE user_info
+(
+    user_id              INT             NOT NULL,
+    user_email           VARCHAR2(50)    NOT NULL,
+    user_pw              VARCHAR2(50)    NOT NULL,
+    user_nickname        VARCHAR2(20)    NOT NULL,
+    SMSReceiptConsent    INT             NOT NULL,
+    CONSTRAINT PK_ PRIMARY KEY (user_id, user_nickname)
+)
+/
+
+CREATE SEQUENCE user_info_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER user_info_AI_TRG
+BEFORE INSERT ON user_info
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT user_info_SEQ.NEXTVAL
+    INTO :NEW.user_id
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER user_info_AI_TRG;
+/
+
+--DROP SEQUENCE user_info_SEQ;
+/
+
+COMMENT ON TABLE user_info IS '회원'
+/
+
+COMMENT ON COLUMN user_info.user_id IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN user_info.user_email IS '아이디'
+/
+
+COMMENT ON COLUMN user_info.user_pw IS '비밀번호'
+/
+
+COMMENT ON COLUMN user_info.user_nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN user_info.SMSReceiptConsent IS '수신동의'
+/
+-------------------------------------------------------------------------------
+CREATE TABLE user_Details
+(
+    user_id          INT             NOT NULL,
+    user_tel         VARCHAR2(20)    NULL,
+    user_address1    VARCHAR2(20)    NULL,
+    user_address2    VARCHAR2(70)    NULL,
+    user_address3    VARCHAR2(80)    NULL,
+    user_name        VARCHAR2(20)    NULL
+)
+/
+
+COMMENT ON TABLE user_Details IS '회원 상세'
+/
+
+COMMENT ON COLUMN user_Details.user_id IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN user_Details.user_tel IS '고객 전화번호'
+/
+
+COMMENT ON COLUMN user_Details.user_address1 IS '고객주소1(우편)'
+/
+
+COMMENT ON COLUMN user_Details.user_address2 IS '고객주소2(주소)'
+/
+
+COMMENT ON COLUMN user_Details.user_address3 IS '고객주소3(상세)'
+/
+
+COMMENT ON COLUMN user_Details.user_name IS '고객이름'
+/
+
+ALTER TABLE user_Details
+    ADD CONSTRAINT FK_user_Details_user_id_user_i FOREIGN KEY (user_id)
+        REFERENCES user_info (user_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE user_Page
+(
+    user_id           INT             NOT NULL,
+    user_orderlist    VARCHAR2(20)    NULL,
+    user_review       VARCHAR2(20)    NULL,
+    user_inquiry      VARCHAR2(20)    NULL
+)
+/
+
+COMMENT ON TABLE user_Page IS '회원페이지'
+/
+
+COMMENT ON COLUMN user_Page.user_id IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN user_Page.user_orderlist IS '고객주문내역'
+/
+
+COMMENT ON COLUMN user_Page.user_review IS '고객리뷰'
+/
+
+COMMENT ON COLUMN user_Page.user_inquiry IS '고객문의내역'
+/
+
+ALTER TABLE user_Page
+    ADD CONSTRAINT FK_user_Page_user_id_user_info FOREIGN KEY (user_id)
+        REFERENCES user_info (user_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE user_Cart
+(
+    user_id           INT             NOT NULL,
+    product_number    INT             NULL,
+    product_num       INT             NULL,
+    product_name      VARCHAR2(80)    NULL,
+    product_price     INT             NULL
+)
+/
+
+COMMENT ON TABLE user_Cart IS '장바구니'
+/
+
+COMMENT ON COLUMN user_Cart.user_id IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN user_Cart.product_number IS '제품번호'
+/
+
+COMMENT ON COLUMN user_Cart.product_num IS '제품숫자'
+/
+
+COMMENT ON COLUMN user_Cart.product_name IS '제품이름'
+/
+
+COMMENT ON COLUMN user_Cart.product_price IS '제품가격'
+/
+
+ALTER TABLE user_Cart
+    ADD CONSTRAINT FK_user_Cart_user_id_user_info FOREIGN KEY (user_id)
+        REFERENCES user_info (user_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE Delivery_Status
+(
+    user_id              INT             NOT NULL,
+    user_address1        VARCHAR2(20)    NULL,
+    user_address2        VARCHAR2(70)    NULL,
+    user_address3        VARCHAR2(80)    NULL,
+    Delivery_Request     VARCHAR2(80)    NULL,
+    Delivery_location    VARCHAR2(20)    DEFAULT '배송준비중' NULL,
+    total_price          INT             NULL,
+    Delivery_date        DATE            DEFAULT sysdate NULL,
+    product_number       INT             NULL,
+    product_count        INT             NULL,
+    Delivery_date_end    DATE            NULL
+)
+/
+
+COMMENT ON TABLE Delivery_Status IS '배송상세'
+/
+
+COMMENT ON COLUMN Delivery_Status.user_id IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN Delivery_Status.user_address1 IS '고객주소1(우편)'
+/
+
+COMMENT ON COLUMN Delivery_Status.user_address2 IS '고객주소2(주소)'
+/
+
+COMMENT ON COLUMN Delivery_Status.user_address3 IS '고객주소3(상세)'
+/
+
+COMMENT ON COLUMN Delivery_Status.Delivery_Request IS '배송요청사항'
+/
+
+COMMENT ON COLUMN Delivery_Status.Delivery_location IS '배송상태'
+/
+
+COMMENT ON COLUMN Delivery_Status.total_price IS '총가격'
+/
+
+COMMENT ON COLUMN Delivery_Status.Delivery_date IS '배송시작 날짜'
+/
+
+COMMENT ON COLUMN Delivery_Status.product_number IS '상품번호'
+/
+
+COMMENT ON COLUMN Delivery_Status.product_count IS '상품개수'
+/
+
+COMMENT ON COLUMN Delivery_Status.Delivery_date_end IS '배송종료 날짜'
+/
+
+ALTER TABLE Delivery_Status
+    ADD CONSTRAINT FK_Delivery_Status_user_id_use FOREIGN KEY (user_id)
+        REFERENCES user_info (user_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE user_Inquiry
+(
+    UD_id            INT               NOT NULL,
+    UD_title         VARCHAR2(50)      NOT NULL,
+    UD_content       VARCHAR2(2000)    NOT NULL,
+    user_nickname    VARCHAR2(50)      NOT NULL,
+    UD_bgroup        INT               NULL,
+    UD_bstep         INT               NULL,
+    UD_bdate         DATE              DEFAULT sysdate NULL,
+    UD_hit           INT               NULL,
+    Reply_check      VARCHAR2(20)      DEFAULT '답변대기' NULL
+)
+/
+
+CREATE SEQUENCE user_Inquiry_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER user_Inquiry_AI_TRG
+BEFORE INSERT ON user_Inquiry
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT user_Inquiry_SEQ.NEXTVAL
+    INTO :NEW.UD_id
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER user_Inquiry_AI_TRG;
+/
+
+--DROP SEQUENCE user_Inquiry_SEQ;
+/
+
+COMMENT ON TABLE user_Inquiry IS '고객문의'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_id IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_title IS '고객문의제목'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_content IS '고객문의내용'
+/
+
+COMMENT ON COLUMN user_Inquiry.user_nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_bgroup IS '번호묶음'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_bstep IS '고객문의답변'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_bdate IS '고객문의날짜'
+/
+
+COMMENT ON COLUMN user_Inquiry.UD_hit IS '조회수'
+/
+
+COMMENT ON COLUMN user_Inquiry.Reply_check IS '응답현황'
+/
+
+ALTER TABLE user_Inquiry
+    ADD CONSTRAINT FK_user_Inquiry_UD_id_user_inf FOREIGN KEY (UD_id)
+        REFERENCES user_info (user_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE Construction_Inquiry
+(
+    CD_id            INT               NOT NULL,
+    CD_title         VARCHAR2(50)      NOT NULL,
+    CD_content       VARCHAR2(2000)    NOT NULL,
+    CD_company       VARCHAR2(50)      NOT NULL,
+    user_nickname    VARCHAR2(50)      NOT NULL,
+    CD_bgroup        INT               NULL,
+    CD_bstep         INT               NULL,
+    CD_bdate         DATE              DEFAULT sysdate NULL,
+    CD_bhit          INT               NULL,
+    Reply_check      VARCHAR2(20)      DEFAULT '답변대기' NULL,
+    CONSTRAINT PK_ConstructionDetails PRIMARY KEY (CD_id)
+)
+/
+
+CREATE SEQUENCE Construction_Inquiry_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER Construction_Inquiry_AI_TRG
+BEFORE INSERT ON Construction_Inquiry
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT Construction_Inquiry_SEQ.NEXTVAL
+    INTO :NEW.CD_id
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER Construction_Inquiry_AI_TRG;
+/
+
+--DROP SEQUENCE Construction_Inquiry_SEQ;
+/
+
+COMMENT ON TABLE Construction_Inquiry IS '시공문의'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_id IS '시공문의번호'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_title IS '시공문의제목'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_content IS '시공문의내용'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_company IS '시공문의회사'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.user_nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_bgroup IS '번호묶음'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_bstep IS '시공문의답변'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_bdate IS '시공문의날짜'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.CD_bhit IS '조회수'
+/
+
+COMMENT ON COLUMN Construction_Inquiry.Reply_check IS '응답현황'
+/
+
+ALTER TABLE Construction_Inquiry
+    ADD CONSTRAINT FK_Construction_Inquiry_user_n FOREIGN KEY (user_nickname)
+        REFERENCES user_info (user_nickname)
+/
+
+ALTER TABLE Construction_Inquiry
+    ADD CONSTRAINT FK_Construction_Inquiry_CD_com FOREIGN KEY (CD_company)
+        REFERENCES Construction_Company (CC_Cname)
+
+/
+-------------------------------------------------------------------------------
+CREATE TABLE user_like
+(
+    like_num         INT             NOT NULL,
+    like_check       int             NULL,
+    com_num          int             NULL,
+    user_nickname    VARCHAR2(20)    NULL,
+    CONSTRAINT PK_user_like PRIMARY KEY (like_num)
+)
+/
+
+CREATE SEQUENCE user_like_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER user_like_AI_TRG
+BEFORE INSERT ON user_like
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT user_like_SEQ.NEXTVAL
+    INTO :NEW.like_num
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER user_like_AI_TRG;
+/
+
+--DROP SEQUENCE user_like_SEQ;
+/
+
+COMMENT ON TABLE user_like IS '좋아요 게시판'
+/
+
+COMMENT ON COLUMN user_like.like_num IS '좋아요 고유번호'
+/
+
+COMMENT ON COLUMN user_like.like_check IS '좋아요 체크'
+/
+
+COMMENT ON COLUMN user_like.com_num IS '커뮤니티 게시판 번호'
+/
+
+COMMENT ON COLUMN user_like.user_nickname IS '유저닉네임'
+/
+
+ALTER TABLE user_like
+    ADD CONSTRAINT FK_user_like_com_num_community FOREIGN KEY (com_num)
+        REFERENCES community_board (com_num)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE community_board
+(
+    com_num          INT               NOT NULL,
+    com_title        VARCHAR2(50)      NULL,
+    com_img1         VARCHAR2(500)     NULL,
+    com_img2         VARCHAR2(500)     NULL,
+    com_img3         VARCHAR2(500)     NULL,
+    com_content1     VARCHAR2(2000)    NULL,
+    com_content2     VARCHAR2(2000)    NULL,
+    com_content3     VARCHAR2(2000)    NULL,
+    user_nickname    VARCHAR2(20)      NULL,
+    com_date         DATE              DEFAULT sysdate NULL,
+    com_hit          int               NULL,
+    CONSTRAINT PK_community_board PRIMARY KEY (com_num)
+)
+/
+
+CREATE SEQUENCE community_board_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER community_board_AI_TRG
+BEFORE INSERT ON community_board
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT community_board_SEQ.NEXTVAL
+    INTO :NEW.com_num
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER community_board_AI_TRG;
+/
+
+--DROP SEQUENCE community_board_SEQ;
+/
+
+COMMENT ON TABLE community_board IS '커뮤니티 게시판'
+/
+
+COMMENT ON COLUMN community_board.com_num IS '커뮤니티 번호'
+/
+
+COMMENT ON COLUMN community_board.com_title IS '커뮤니티 제목'
+/
+
+COMMENT ON COLUMN community_board.com_img1 IS '커뮤니티 사진1'
+/
+
+COMMENT ON COLUMN community_board.com_img2 IS '커뮤니티 사진2'
+/
+
+COMMENT ON COLUMN community_board.com_img3 IS '커뮤니티 사진3'
+/
+
+COMMENT ON COLUMN community_board.com_content1 IS '커뮤니티 내용1'
+/
+
+COMMENT ON COLUMN community_board.com_content2 IS '커뮤니티 내용2'
+/
+
+COMMENT ON COLUMN community_board.com_content3 IS '커뮤니티 내용3'
+/
+
+COMMENT ON COLUMN community_board.user_nickname IS '유저닉네임'
+/
+
+COMMENT ON COLUMN community_board.com_date IS '날짜'
+/
+
+COMMENT ON COLUMN community_board.com_hit IS '조회수'
+/
+-------------------------------------------------------------------------------
+CREATE TABLE product_Store
+(
+    product_number    INT              NOT NULL,
+    category_code     VARCHAR2(30)     NOT NULL,
+    product_name      VARCHAR2(80)     NOT NULL,
+    product_stock     INT              NOT NULL,
+    product_Brand     VARCHAR2(20)     NULL,
+    product_Main      VARCHAR2(500)    NULL,
+    product_Serve     VARCHAR2(500)    NULL,
+    product_desc      VARCHAR2(45)     NULL,
+    product_date      DATE             DEFAULT sysdate NOT NULL,
+    product_option    VARCHAR2(20)     NULL,
+    product_price     INT              NULL,
+    CONSTRAINT PK_product_Store PRIMARY KEY (product_number)
+)
+/
+
+CREATE SEQUENCE product_Store_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER product_Store_AI_TRG
+BEFORE INSERT ON product_Store
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT product_Store_SEQ.NEXTVAL
+    INTO :NEW.product_number
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER product_Store_AI_TRG;
+/
+
+--DROP SEQUENCE product_Store_SEQ;
+/
+
+COMMENT ON TABLE product_Store IS '관리자페이지'
+/
+
+COMMENT ON COLUMN product_Store.product_number IS '상품번호'
+/
+
+COMMENT ON COLUMN product_Store.category_code IS '상품구별컬럼'
+/
+
+COMMENT ON COLUMN product_Store.product_name IS '상품이름'
+/
+
+COMMENT ON COLUMN product_Store.product_stock IS '재고'
+/
+
+COMMENT ON COLUMN product_Store.product_Brand IS '브랜드'
+/
+
+COMMENT ON COLUMN product_Store.product_Main IS '상품이미지'
+/
+
+COMMENT ON COLUMN product_Store.product_Serve IS '상품설명이미지'
+/
+
+COMMENT ON COLUMN product_Store.product_desc IS '상품설명글'
+/
+
+COMMENT ON COLUMN product_Store.product_date IS '등록날짜'
+/
+
+COMMENT ON COLUMN product_Store.product_option IS '옵션'
+/
+
+COMMENT ON COLUMN product_Store.product_price IS '상품가격'
+/
+-------------------------------------------------------------------------------
+CREATE TABLE Event_Comments
+(
+    event_no         INT             NOT NULL,
+    event_content    VARCHAR2(80)    NULL,
+    event_date       DATE            NULL,
+    user_nickname    VARCHAR2(20)    NULL,
+    event_id         INT             NULL,
+    CONSTRAINT PK_event PRIMARY KEY (event_no)
+)
+/
+
+CREATE SEQUENCE Event_Comments_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER Event_Comments_AI_TRG
+BEFORE INSERT ON Event_Comments
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT Event_Comments_SEQ.NEXTVAL
+    INTO :NEW.event_no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER Event_Comments_AI_TRG;
+/
+
+--DROP SEQUENCE Event_Comments_SEQ;
+/
+
+COMMENT ON TABLE Event_Comments IS '댓글'
+/
+
+COMMENT ON COLUMN Event_Comments.event_no IS '번호'
+/
+
+COMMENT ON COLUMN Event_Comments.event_content IS '내용'
+/
+
+COMMENT ON COLUMN Event_Comments.event_date IS '날짜'
+/
+
+COMMENT ON COLUMN Event_Comments.user_nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN Event_Comments.event_id IS '이벤트번호'
+/
+
+ALTER TABLE Event_Comments
+    ADD CONSTRAINT FK_Event_Comments_user_nicknam FOREIGN KEY (user_nickname)
+        REFERENCES user_info (user_nickname)
+/
+
+ALTER TABLE Event_Comments
+    ADD CONSTRAINT FK_Event_Comments_event_id_Eve FOREIGN KEY (event_id)
+        REFERENCES Event_Page (event_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE Event_Page
+(
+    event_id        INT              NOT NULL,
+    event_title     VARCHAR2(80)     NULL,
+    event_main      VARCHAR2(300)    NULL,
+    event_serve     VARCHAR2(500)    NULL,
+    event_period    VARCHAR2(200)    NULL,
+    CONSTRAINT PK_Event_Page PRIMARY KEY (event_id)
+)
+/
+
+CREATE SEQUENCE Event_Page_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER Event_Page_AI_TRG
+BEFORE INSERT ON Event_Page
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT Event_Page_SEQ.NEXTVAL
+    INTO :NEW.event_id
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER Event_Page_AI_TRG;
+/
+
+--DROP SEQUENCE Event_Page_SEQ;
+/
+
+COMMENT ON COLUMN Event_Page.event_id IS '이벤트번호'
+/
+
+COMMENT ON COLUMN Event_Page.event_title IS '이벤트제목'
+/
+
+COMMENT ON COLUMN Event_Page.event_main IS '이벤트메인이미지'
+/
+
+COMMENT ON COLUMN Event_Page.event_serve IS '이벤트설명이미지'
+/
+
+COMMENT ON COLUMN Event_Page.event_period IS '이벤트기간'
+/
+-------------------------------------------------------------------------------
+CREATE TABLE user_main
+(
+    USER_ID      INT              NULL,
+    USER_MAIN    VARCHAR2(500)    NULL
+)
+/
+
+COMMENT ON TABLE user_main IS '유저 사진'
+/
+
+COMMENT ON COLUMN user_main.USER_ID IS '고객번호(고유)'
+/
+
+COMMENT ON COLUMN user_main.USER_MAIN IS '고객 이미지'
+/
+
+ALTER TABLE user_main
+    ADD CONSTRAINT FK_user_main_USER_ID_user_info FOREIGN KEY (USER_ID)
+        REFERENCES user_info (user_id)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE Reply
+(
+    reply_no         int             NOT NULL,
+    reply_content    VARCHAR2(80)    NULL,
+    reply_date       DATE            NULL,
+    user_nickname    VARCHAR2(20)    NULL,
+    event_id         INT             NULL,
+    event_no         INT             NULL,
+    group_id         INT             NULL,
+    depth            INT             NULL,
+    order_no         INT             NULL,
+    CONSTRAINT PK_Reply PRIMARY KEY (reply_no)
+)
+/
+
+CREATE SEQUENCE Reply_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER Reply_AI_TRG
+BEFORE INSERT ON Reply
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT Reply_SEQ.NEXTVAL
+    INTO :NEW.reply_no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER Reply_AI_TRG;
+/
+
+--DROP SEQUENCE Reply_SEQ;
+/
+
+COMMENT ON TABLE Reply IS '대댓'
+/
+
+COMMENT ON COLUMN Reply.reply_no IS '대댓번호'
+/
+
+COMMENT ON COLUMN Reply.reply_content IS '내용'
+/
+
+COMMENT ON COLUMN Reply.reply_date IS '날짜'
+/
+
+COMMENT ON COLUMN Reply.user_nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN Reply.event_id IS '이벤트번호'
+/
+
+COMMENT ON COLUMN Reply.event_no IS '댓글번호'
+/
+
+COMMENT ON COLUMN Reply.group_id IS '그룹번호'
+/
+
+COMMENT ON COLUMN Reply.depth IS '깊이'
+/
+
+COMMENT ON COLUMN Reply.order_no IS '순서'
+/
+
+ALTER TABLE Reply
+    ADD CONSTRAINT FK_Reply_user_nickname_user_in FOREIGN KEY (user_nickname)
+        REFERENCES user_info (user_nickname)
+/
+
+ALTER TABLE Reply
+    ADD CONSTRAINT FK_Reply_event_id_Event_Page_e FOREIGN KEY (event_id)
+        REFERENCES Event_Page (event_id)
+/
+
+ALTER TABLE Reply
+    ADD CONSTRAINT FK_Reply_event_no_Event_Commen FOREIGN KEY (event_no)
+        REFERENCES Event_Comments (event_no)
+/
+
+ALTER TABLE Reply
+    ADD CONSTRAINT FK_Reply_group_id_Event_Commen FOREIGN KEY (group_id)
+        REFERENCES Event_Comments (event_no)
+/
+-------------------------------------------------------------------------------
+CREATE TABLE community_comment
+(
+    comment_no         INT              NOT NULL,
+    comment_content    VARCHAR2(100)    NULL,
+    comment_date       DATE             NULL,
+    user_nickname      VARCHAR2(20)     NULL,
+    com_num            INT              NULL,
+    CONSTRAINT PK_community_comment PRIMARY KEY (comment_no)
+)
+/
+
+CREATE SEQUENCE community_comment_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER community_comment_AI_TRG
+BEFORE INSERT ON community_comment
+REFERENCING NEW AS NEW FOR EACH ROW
+BEGIN
+    SELECT community_comment_SEQ.NEXTVAL
+    INTO :NEW.comment_no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER community_comment_AI_TRG;
+/
+
+--DROP SEQUENCE community_comment_SEQ;
+/
+
+COMMENT ON COLUMN community_comment.comment_no IS '댓글번호'
+/
+
+COMMENT ON COLUMN community_comment.comment_content IS '내용'
+/
+
+COMMENT ON COLUMN community_comment.comment_date IS '날짜'
+/
+
+COMMENT ON COLUMN community_comment.user_nickname IS '유저닉네임'
+/
+
+COMMENT ON COLUMN community_comment.com_num IS '커뮤니티 게시판 번호'
+/
+
+ALTER TABLE community_comment
+    ADD CONSTRAINT FK_community_comment_com_num_c FOREIGN KEY (com_num)
+        REFERENCES community_board (com_num)
+/
+
+ALTER TABLE community_comment
+    ADD CONSTRAINT FK_community_comment_user_nick FOREIGN KEY (user_nickname)
+        REFERENCES user_info (user_nickname)
+/
+-------------------------------------------------------------------------------
