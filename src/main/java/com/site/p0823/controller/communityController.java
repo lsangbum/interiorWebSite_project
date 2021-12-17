@@ -28,7 +28,6 @@ public class communityController {
 	public String communityMain(Model model) {
 		// 커뮤니티 글 불러오기
 		ArrayList<communityVo> list = communityService.selectAllCommunityList();
-		
 
 		model.addAttribute("Clist", list);
 		return "/community/communityMain";
@@ -37,20 +36,20 @@ public class communityController {
 	// 커뮤니티 디테일
 	@RequestMapping("communityDetails")
 	public String communityDetails(@RequestParam int com_Num, Model model) {
-	// 번호로 글 하나 불러오기
-	communityVo communityVo = communityService.selectOnecommunityGet(com_Num);
-	// 조회수 증가
-	communityService.updateCommunityHitUp(com_Num);
-	//댓글 리스트 가지고 오기
-	 Map<String, Object> map = communityService.SelectCommentAll(com_Num);
-	
-	System.out.println(map);
-	 
-	model.addAttribute("map",map);
-	model.addAttribute("communityVo", communityVo);
-	return "/community/communityDetails";
+		// 번호로 글 하나 불러오기
+		communityVo communityVo = communityService.selectOnecommunityGet(com_Num);
+		// 조회수 증가
+		communityService.updateCommunityHitUp(com_Num);
+		// 댓글 리스트 가지고 오기
+		Map<String, Object> map = communityService.SelectCommentAll(com_Num);
+
+		System.out.println(map);
+
+		model.addAttribute("map", map);
+		model.addAttribute("communityVo", communityVo);
+		return "/community/communityDetails";
 	}
-	
+
 	// 커뮤니티 글쓰기
 	@RequestMapping("communityWrite")
 	public String communityWrite() {
@@ -69,7 +68,7 @@ public class communityController {
 			String comm_3 = String.format("%s", comm3);
 
 			// 파일저장위치
-			String fileUrl = "C:/Users/82109/git/Project_lastFile/pro_Version09/src/main/resources/static/communityImg/";
+			String fileUrl = "C:/workspace/interiorWebSite_project/src/main/resources/static/communityImg/";
 			// 복사할 파일
 			File f1 = new File(fileUrl + comm1);
 			File f2 = new File(fileUrl + comm2);
@@ -102,8 +101,6 @@ public class communityController {
 
 		Map<String, Object> map = communityService.InsertCommentWrite(cCommentVo);
 
-		
-		
 		return map;
 	}
 //

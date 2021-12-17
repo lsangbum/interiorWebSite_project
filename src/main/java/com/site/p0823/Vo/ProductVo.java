@@ -46,14 +46,4 @@ public class ProductVo {
     private String product_Price2;
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
