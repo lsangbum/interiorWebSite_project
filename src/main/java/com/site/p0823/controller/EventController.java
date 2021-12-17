@@ -3,6 +3,7 @@ package com.site.p0823.controller;
 import java.util.ArrayList;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,10 @@ import com.site.p0823.Vo.EventVo;
 import com.site.p0823.service.EventService;
 
 @Controller
-public class eventController {
+@RequiredArgsConstructor
+public class EventController {
 
-	@Autowired
-	EventService eventService;
+	private final EventService eventService;
 	
 	// 이벤트 리스트 페이지
 	@RequestMapping("event")

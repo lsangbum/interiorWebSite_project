@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.site.p0823.Vo.CommunityCommentVo;
 import com.site.p0823.Vo.communityVo;
-import com.site.p0823.mapper.communityMapper;
+import com.site.p0823.mapper.CommunityMapper;
 
 @Service
-public class communityServiceImpl implements communityService {
+public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
-	communityMapper communityMapper;
+	CommunityMapper communityMapper;
 
 	// 업로드 부분
 	@Override

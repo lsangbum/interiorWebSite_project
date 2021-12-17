@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,12 @@ import com.site.p0823.service.AdminService;
 import com.site.p0823.service.CompanyService;
 
 @Controller
-public class adminController {
+@RequiredArgsConstructor
+public class AdminController {
 
-	@Autowired
-	AdminService adminService;
-	@Autowired
-	CompanyService companyService;
+	private final AdminService adminService;
+
+	private final CompanyService companyService;
 	
 	DecimalFormat format = new DecimalFormat("###,###");
 	
@@ -44,6 +45,7 @@ public class adminController {
 	public String productInsert() {
 		return "/admin/productInsert";
 	}
+
 	//관리자페이지 상품 저장
 	@PostMapping("productInsert")
 	public String productInsert(ProductVo productVo, @RequestParam MultipartFile Main, @RequestParam MultipartFile Serve ) throws Exception {
@@ -79,6 +81,7 @@ public class adminController {
 	public String productDelete() {
 		return "/admin/productDelete";
 	}
+
 	//관리자페이지 상품삭제 검색
 	@PostMapping("Searchlist")
 	@ResponseBody
@@ -86,6 +89,7 @@ public class adminController {
 		ArrayList<ProductVo> list = adminService.selectListAll(deleteProductName);
 		return list;
 	}
+
 	//관리자페이지 선택 상품 수정
 	@GetMapping("selectModfiy")
 	public String UpdateModfiy(@RequestParam int deleteNum, @RequestParam int ModfiyPrice, @RequestParam int ModfiyPriceStock, Model model) {
@@ -93,20 +97,21 @@ public class adminController {
 		model.addAttribute("modfiyCk",modfiyCk);
 		return "/admin/productDelete";
 	}
+
 	//관리자페이지 선택 상품 삭제
 	@GetMapping("selectDelete")
 	public String selectDelete(@RequestParam int deleteNum) {
 		adminService.selectDeleteOne(deleteNum);
 		return "/admin/productDelete";
 	}
-	
-	
+
 	//관리자페이지 시공업체삭제
 	@RequestMapping("companyDelete")
 	public String companyDelete() {
 		//adminService.companyDeleteOne();
 		return "/admin/companyDelete";
 	}
+
 	//관리자페이지 컴퍼니 검색
 	@PostMapping("companyAllList")
 	@ResponseBody
@@ -114,6 +119,7 @@ public class adminController {
 		ArrayList<CompanyVo> list = adminService.selectCompanyAllList(deletecompanyName);
 		return list;
 	}
+
 	//관리자페이지 시공업체삭제
 	@GetMapping("companyDeleteOne") 
 		public String companyDeleteOne(@RequestParam int ccNum) { 
@@ -121,6 +127,7 @@ public class adminController {
 		adminService.companyDeleteOne(ccNum); 
 		return "/admin/companyDelete"; 
 	}
+
 	//관리자페이지 시공업체수정
 	@GetMapping("companyModfiy") 
 	public String companyModfiy(@RequestParam int ccNum, @RequestParam String pname, Model model) { 
@@ -142,6 +149,7 @@ public class adminController {
 		model.addAttribute("list", list);
 		return "/admin/officerDelivery";
 	}
+
 	//관리자페이지 배송현황 업데이트
 	@RequestMapping("LocationUpDate")
 	public String LocationUpDate(@RequestParam int user_Id, @RequestParam String Location,Model model) {

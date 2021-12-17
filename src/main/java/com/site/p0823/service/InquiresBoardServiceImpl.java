@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 
 import com.site.p0823.Vo.Construction_InquiryVo;
 import com.site.p0823.Vo.user_InquiryVo;
-import com.site.p0823.mapper.inquiresBoardMapper;
+import com.site.p0823.mapper.InquiresBoardMapper;
 
 @Service
-public class inquiresBoardServiceImpl implements inquiresBoardService {
+public class InquiresBoardServiceImpl implements InquiresBoardService {
 
 	@Autowired
-	inquiresBoardMapper inquiresBoardMapper;
+	InquiresBoardMapper inquiresBoardMapper;
 	
 	//시공문의내역 가지고오기
 	@Override

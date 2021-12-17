@@ -7,7 +7,7 @@ import com.site.p0823.Vo.Construction_InquiryVo;
 import com.site.p0823.Vo.user_InquiryVo;
 
 @Mapper
-public interface inquiresBoardMapper {
+public interface InquiresBoardMapper {
 
 	
 	//시공문의내역 가지고오기

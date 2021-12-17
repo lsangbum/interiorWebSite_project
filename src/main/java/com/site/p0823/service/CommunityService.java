@@ -6,7 +6,7 @@ import java.util.Map;
 import com.site.p0823.Vo.CommunityCommentVo;
 import com.site.p0823.Vo.communityVo;
 
-public interface communityService {
+public interface CommunityService {
 
 	// 커뮤티티 업로드 부분
 	void insertCommunityOneUpload(communityVo communityVo);

@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.site.p0823.Vo.CommunityCommentVo;
 import com.site.p0823.Vo.communityVo;
-import com.site.p0823.service.communityService;
+import com.site.p0823.service.CommunityService;
 
 @Controller
-public class communityController {
+@RequiredArgsConstructor
+public class CommunityController {
 
-	@Autowired
-	communityService communityService;
+	private final CommunityService communityService;
 
 	// 커뮤니티 메인
 	@RequestMapping("communityMain")

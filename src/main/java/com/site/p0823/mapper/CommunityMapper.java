@@ -10,7 +10,7 @@ import com.site.p0823.Vo.CommunityCommentVo;
 import com.site.p0823.Vo.communityVo;
 
 @Mapper
-public interface communityMapper {
+public interface CommunityMapper {
 
 	// 커뮤티니 업로드 부분
 	void insertCommunityOneUpload(@Param("communityVo") communityVo communityVo);

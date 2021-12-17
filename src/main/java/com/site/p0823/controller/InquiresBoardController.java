@@ -1,6 +1,6 @@
 package com.site.p0823.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.site.p0823.Vo.Construction_InquiryVo;
 import com.site.p0823.Vo.user_InquiryVo;
-import com.site.p0823.service.inquiresBoardService;
+import com.site.p0823.service.InquiresBoardService;
 
 @Controller
-public class inquiresBoardController {
+@RequiredArgsConstructor
+public class InquiresBoardController {
 
-	@Autowired
-	inquiresBoardService inquiresBoardService;
+	private final InquiresBoardService inquiresBoardService;
 	
 	//시공문의내역 내용 가지고오기
 	@RequestMapping("InquiriesCompany")

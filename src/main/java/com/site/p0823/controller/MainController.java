@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,21 +24,17 @@ import com.site.p0823.service.CompanyService;
 import com.site.p0823.service.EventService;
 import com.site.p0823.service.StoreService;
 import com.site.p0823.service.UserService;
-import com.site.p0823.service.communityService;
+import com.site.p0823.service.CommunityService;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private StoreService storeService;
-	@Autowired
-	CompanyService companyService;
-	@Autowired
-	communityService communityService;
-	@Autowired
-	EventService eventService;
+	private final  UserService userService;
+	private final  StoreService storeService;
+	private final CompanyService companyService;
+	private final CommunityService communityService;
+	private final EventService eventService;
 	
 	
 	DecimalFormat format = new DecimalFormat("###,###");

@@ -3,7 +3,7 @@ package com.site.p0823.service;
 import com.site.p0823.Vo.Construction_InquiryVo;
 import com.site.p0823.Vo.user_InquiryVo;
 
-public interface inquiresBoardService {
+public interface InquiresBoardService {
 
 	//시공문의내역 가지고오기
 	Construction_InquiryVo selcetInquiresOne(int cd_id);

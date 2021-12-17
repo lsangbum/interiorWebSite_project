@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,14 +28,12 @@ import com.site.p0823.service.StoreService;
 import com.site.p0823.service.UserService;
 
 @Controller
+@RequiredArgsConstructor
 public class MypageController {
 
-   @Autowired
-   MyPageService myPageService;
-   @Autowired
-   StoreService storeService;
-   @Autowired
-   UserService userService;
+   private final MyPageService myPageService;
+   private final StoreService storeService;
+   private final  UserService userService;
    
    DecimalFormat format = new DecimalFormat("###,###");
 
