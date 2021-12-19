@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.p0823.Vo.Construction_InquiryVo;
-import com.site.p0823.Vo.Delivery_StatusVo;
-import com.site.p0823.Vo.EventVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.UserCartVo;
-import com.site.p0823.Vo.UserVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.Construction_InquiryVo;
+import com.site.p0823.vo.Delivery_StatusVo;
+import com.site.p0823.vo.EventVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.UserCartVo;
+import com.site.p0823.vo.UserVo;
+import com.site.p0823.vo.user_InquiryVo;
 import com.site.p0823.mapper.MypageMapper;
 
 

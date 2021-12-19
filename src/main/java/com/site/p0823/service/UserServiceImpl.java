@@ -7,11 +7,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.UserVo;
-import com.site.p0823.Vo.user_DetailsVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.UserVo;
+import com.site.p0823.vo.user_DetailsVo;
+import com.site.p0823.vo.user_InquiryVo;
 import com.site.p0823.mapper.UserMapper;
 
 @Service

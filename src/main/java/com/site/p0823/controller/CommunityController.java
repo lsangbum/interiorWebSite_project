@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.site.p0823.Vo.CommunityCommentVo;
-import com.site.p0823.Vo.communityVo;
+import com.site.p0823.vo.CommunityCommentVo;
+import com.site.p0823.vo.communityVo;
 import com.site.p0823.service.CommunityService;
 
 @Controller

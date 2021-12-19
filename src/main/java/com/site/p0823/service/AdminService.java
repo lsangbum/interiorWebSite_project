@@ -3,9 +3,9 @@ package com.site.p0823.service;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.Delivery_StatusVo;
-import com.site.p0823.Vo.ProductVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.Delivery_StatusVo;
+import com.site.p0823.vo.ProductVo;
 
 public interface AdminService {
 

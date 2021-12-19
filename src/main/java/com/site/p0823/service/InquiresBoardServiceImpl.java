@@ -3,8 +3,8 @@ package com.site.p0823.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.p0823.Vo.Construction_InquiryVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.Construction_InquiryVo;
+import com.site.p0823.vo.user_InquiryVo;
 import com.site.p0823.mapper.InquiresBoardMapper;
 
 @Service

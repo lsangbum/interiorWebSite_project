@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.InquiryVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.InquiryVo;
 import com.site.p0823.mapper.CompanyMapper;
 
 @Service

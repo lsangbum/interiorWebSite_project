@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.site.p0823.Vo.Construction_InquiryVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.Construction_InquiryVo;
+import com.site.p0823.vo.user_InquiryVo;
 import com.site.p0823.service.InquiresBoardService;
 
 @Controller

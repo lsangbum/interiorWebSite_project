@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.Delivery_StatusVo;
-import com.site.p0823.Vo.ProductVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.Delivery_StatusVo;
+import com.site.p0823.vo.ProductVo;
 import com.site.p0823.service.AdminService;
 import com.site.p0823.service.CompanyService;
 

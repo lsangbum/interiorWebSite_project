@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.UserCartVo;
-import com.site.p0823.Vo.UserVo;
-import com.site.p0823.Vo.user_DetailsVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.UserCartVo;
+import com.site.p0823.vo.UserVo;
+import com.site.p0823.vo.user_DetailsVo;
 import com.site.p0823.service.MyPageService;
 import com.site.p0823.service.StoreService;
 import com.site.p0823.service.UserService;

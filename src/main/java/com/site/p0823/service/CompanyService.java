@@ -2,8 +2,8 @@ package com.site.p0823.service;
 
 import java.util.ArrayList;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.InquiryVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.InquiryVo;
 
 public interface CompanyService {
 

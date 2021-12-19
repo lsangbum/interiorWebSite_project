@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.site.p0823.Vo.Delivery_StatusVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.user_DetailsVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.user_DetailsVo;
 
 @Mapper
 public interface StoreMapper {

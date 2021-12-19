@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.site.p0823.Vo.EventListVo;
-import com.site.p0823.Vo.EventVo;
+import com.site.p0823.vo.EventListVo;
+import com.site.p0823.vo.EventVo;
 import com.site.p0823.service.EventService;
 
 @Controller

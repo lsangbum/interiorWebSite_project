@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.EventListVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.UserVo;
-import com.site.p0823.Vo.communityVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.EventListVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.UserVo;
+import com.site.p0823.vo.communityVo;
 import com.site.p0823.service.CompanyService;
 import com.site.p0823.service.EventService;
 import com.site.p0823.service.StoreService;

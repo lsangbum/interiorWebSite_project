@@ -1,7 +1,7 @@
 package com.site.p0823.service;
 
-import com.site.p0823.Vo.Construction_InquiryVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.Construction_InquiryVo;
+import com.site.p0823.vo.user_InquiryVo;
 
 public interface InquiresBoardService {
 

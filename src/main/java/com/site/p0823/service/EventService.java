@@ -3,8 +3,8 @@ package com.site.p0823.service;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.site.p0823.Vo.EventVo;
-import com.site.p0823.Vo.EventListVo;
+import com.site.p0823.vo.EventVo;
+import com.site.p0823.vo.EventListVo;
 
 
 public interface EventService {

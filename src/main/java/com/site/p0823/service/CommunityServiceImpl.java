@@ -8,8 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.p0823.Vo.CommunityCommentVo;
-import com.site.p0823.Vo.communityVo;
+import com.site.p0823.vo.CommunityCommentVo;
+import com.site.p0823.vo.communityVo;
 import com.site.p0823.mapper.CommunityMapper;
 
 @Service

@@ -1,4 +1,4 @@
-package com.site.p0823.Vo;
+package com.site.p0823.vo;
 
 public class test {
 

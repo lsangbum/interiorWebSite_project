@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.Delivery_StatusVo;
-import com.site.p0823.Vo.InquiryVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.Delivery_StatusVo;
+import com.site.p0823.vo.InquiryVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.user_InquiryVo;
 
 @Mapper
 public interface AdminMapper {

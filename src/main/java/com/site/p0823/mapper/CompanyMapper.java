@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.InquiryVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.InquiryVo;
 
 @Mapper
 public interface CompanyMapper {

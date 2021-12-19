@@ -6,7 +6,7 @@
 
 	<!-- 시공문의 내역 정보 가지고 오기 -->
 	<select id="selcetInquiresOne"
-		resultType="com.site.p0823.Vo.Construction_InquiryVo">
+		resultType="com.site.p0823.vo.Construction_InquiryVo">
 		select * from construction_inquiry
 		where cd_id = #{cd_id}
 	</select>
@@ -46,7 +46,7 @@
 
 	<!-- 시공문의 내역 정보 가지고 오기 -->
 	<select id="selectUserInquiresOne"
-		resultType="com.site.p0823.Vo.user_InquiryVo">
+		resultType="com.site.p0823.vo.user_InquiryVo">
 		select * from user_inquiry
 		where ud_id = #{ud_id}
 	</select>

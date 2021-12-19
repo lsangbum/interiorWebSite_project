@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.site.p0823.Vo.Construction_InquiryVo;
-import com.site.p0823.Vo.Delivery_StatusVo;
-import com.site.p0823.Vo.EventVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.UserCartVo;
-import com.site.p0823.Vo.UserVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.Construction_InquiryVo;
+import com.site.p0823.vo.Delivery_StatusVo;
+import com.site.p0823.vo.EventVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.UserCartVo;
+import com.site.p0823.vo.UserVo;
+import com.site.p0823.vo.user_InquiryVo;
 import com.site.p0823.service.MyPageService;
 import com.site.p0823.service.StoreService;
 import com.site.p0823.service.UserService;

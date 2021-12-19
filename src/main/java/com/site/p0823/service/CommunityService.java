@@ -3,8 +3,8 @@ package com.site.p0823.service;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.site.p0823.Vo.CommunityCommentVo;
-import com.site.p0823.Vo.communityVo;
+import com.site.p0823.vo.CommunityCommentVo;
+import com.site.p0823.vo.communityVo;
 
 public interface CommunityService {
 

@@ -2,11 +2,11 @@ package com.site.p0823.service;
 
 import java.util.ArrayList;
 
-import com.site.p0823.Vo.CompanyVo;
-import com.site.p0823.Vo.ProductVo;
-import com.site.p0823.Vo.UserVo;
-import com.site.p0823.Vo.user_DetailsVo;
-import com.site.p0823.Vo.user_InquiryVo;
+import com.site.p0823.vo.CompanyVo;
+import com.site.p0823.vo.ProductVo;
+import com.site.p0823.vo.UserVo;
+import com.site.p0823.vo.user_DetailsVo;
+import com.site.p0823.vo.user_InquiryVo;
 
 public interface UserService {
 	

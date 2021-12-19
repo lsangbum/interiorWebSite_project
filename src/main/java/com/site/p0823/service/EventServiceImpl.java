@@ -8,8 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.site.p0823.Vo.EventListVo;
-import com.site.p0823.Vo.EventVo;
+import com.site.p0823.vo.EventListVo;
+import com.site.p0823.vo.EventVo;
 import com.site.p0823.mapper.EventMapper;
 
 

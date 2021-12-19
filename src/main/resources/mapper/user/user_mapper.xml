@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.site.p0823.mapper.UserMapper">
 
-	<select id="" resultType="com.site.p0823.Vo.UserVo">
+	<select id="" resultType="com.site.p0823.vo.UserVo">
 
 	</select>
 
@@ -26,7 +26,7 @@
 
 	<!-- 로그인 -->
 	<select id="selectLoginOne"
-		resultType="com.site.p0823.Vo.UserVo">
+		resultType="com.site.p0823.vo.UserVo">
 		<![CDATA[
 		SELECT *
 		FROM user_info
@@ -36,13 +36,13 @@
 
 	<!-- 유저검색 이메일 가져오기 -->
 	<select id="selectUserOneSearch"
-		resultType="com.site.p0823.Vo.UserVo">
+		resultType="com.site.p0823.vo.UserVo">
 		select * from user_info where user_id = #{s_id}
 	</select>
 
 	<!-- 회원 상세부분 있는지 확인 -->
 	<select id="selectInformationYes"
-		resultType="com.site.p0823.Vo.user_DetailsVo">
+		resultType="com.site.p0823.vo.user_DetailsVo">
 		select * from user_Details where user_id = #{s_id}
 	</select>
 
@@ -90,7 +90,7 @@
 
 	<!-- 검색부분 회사 -->
 	<select id="selectComSearchList"
-		resultType="com.site.p0823.Vo.CompanyVo">
+		resultType="com.site.p0823.vo.CompanyVo">
 		select * from
 		construction_company
 		where cc_Cname like '%' || #{search} || '%'
@@ -98,7 +98,7 @@
 	</select>
 	<!-- 검색부분 상품 -->
 	<select id="selectStoreSearchList"
-		resultType="com.site.p0823.Vo.ProductVo">
+		resultType="com.site.p0823.vo.ProductVo">
 		select * from
 		product_store
 		where product_name like '%' || #{search} || '%'
